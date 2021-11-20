@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,10 +10,15 @@ public class Player : MonoBehaviour
     public Joystick controller;
     public float speed;
     public float rotspeed;
+    public float health;
+    public Slider healthbar;
+    
+   
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Rigidbody>();
+       
     }
 
     // Update is called once per frame
@@ -32,7 +38,9 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotspeed * Time.deltaTime);
         }
 
-      
-
+        healthbar.value = health;
+        
+     
+        
     }
 }

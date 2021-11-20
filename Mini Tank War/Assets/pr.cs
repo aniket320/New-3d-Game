@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class pr : MonoBehaviour
 {
-    public GameObject prt;
+    public GameObject Effect1;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +19,13 @@ public class pr : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        foreach(ContactPoint contact in collision.contacts)
+        if (collision.gameObject.CompareTag("floor"))
         {
-           GameObject part= Instantiate(prt, contact.point, Quaternion.identity);
-            Destroy(part,1);
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                GameObject effet = Instantiate(Effect1, contact.point, Quaternion.identity);
+                Destroy(effet, 2);
+            }
         }
-       
     }
 }
