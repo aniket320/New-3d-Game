@@ -26,6 +26,18 @@ public class pr : MonoBehaviour
                 GameObject effet = Instantiate(Effect1, contact.point, Quaternion.identity);
                 Destroy(effet, 2);
             }
+            StartCoroutine(delay());
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(delay());
+        }
+    }
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 }

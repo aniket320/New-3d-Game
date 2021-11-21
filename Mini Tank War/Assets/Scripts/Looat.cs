@@ -7,7 +7,7 @@ public class Looat : MonoBehaviour
     public Joystick look;
     float a, b;
 
-    public Transform e;
+    public fire Detect;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,19 +30,19 @@ public class Looat : MonoBehaviour
         }
         if (look.Horizontal >= .3f)
         {
-            Debug.Log("sd");
+            Detect.firing();
         } 
         else if (look.Horizontal <= -.3f)
         {
-            Debug.Log("sd");
+            Detect.firing();
         }
         if (look.Vertical >= .3f)
         {
-            Debug.Log("sd");
+            Detect.firing();
         }
         if (look.Vertical <= -.3f)
         {
-            Debug.Log("sd");
+            Detect.firing();
         }
 
     }

@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     public float rotspeed;
     public float health;
     public Slider healthbar;
-    
+    public GameObject left; 
+    public GameObject right;
    
     // Start is called before the first frame update
     void Start()
@@ -33,14 +34,41 @@ public class Player : MonoBehaviour
 
         if (Movement != Vector3.zero)
         {
-            transform.forward = Movement;
-            Quaternion toRotation = Quaternion.LookRotation(Movement, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotspeed * Time.deltaTime);
+            transform.forward = Movement*rotspeed;
+        }
+
+        if (player.velocity.magnitude > 0)
+        {
+            left.SetActive(true);
+            right.SetActive(true);
+        }
+        else 
+        {
+            left.SetActive(false);
+            right.SetActive(false);
         }
 
         healthbar.value = health;
         
      
         
+    }
+
+    private void OnTriggerEnter(Collider stuck)
+    {
+        if (stuck.gameObject.CompareTag("stucker"))
+        {
+            speed = 0.1f;
+
+        }
+       
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("stucker"))
+        {
+            speed = 0.5f;
+        }
     }
 }
